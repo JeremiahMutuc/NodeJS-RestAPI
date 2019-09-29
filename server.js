@@ -43,15 +43,11 @@ app.get('/customers/:id/', (req, res) => {
 
 app.post('/customers', (req, res) => {
 
-    const schema = {
-        name: Joi.string().min(3).required()
-    }
+    const { error } = validateCustomer(req.body);
 
-    const result = Joi.validate(req.body, schema);
-
-    if(result.error){
+    if(error){
         //400 badrequest
-        res.status(400).send('Name is required and should be minimum of 3 characters');
+        res.status(400).send(error.details[0].message);
         return;
     }
 
@@ -67,9 +63,35 @@ app.post('/customers', (req, res) => {
 
 //PUT requests
 
-app.put('/customers/:id', () => {
+app.put('/customers/:id', (req, res) => {
+    //Validation 
+    const { error } = validateCustomer(req.body);
 
+    //look for custumer if exists
+    const customer = customers.find(c => c.id === parseInt(req.params.id))
+    if(!customer){
+        res.status(404).send(error.details[0].message)
+    }
+
+    if(error){
+        //400 badrequest
+        res.status(400).send(error.details[0].message);
+        return;
+    }
+
+    //update course
+    customer.name = req.body.name;
+    res.send(customer);
 })
+
+//function for validating body
+function validateCustomer(customer){
+    const schema = {
+        name: Joi.string().min(3).required()
+    }
+
+    return Joi.validate(customer, schema);
+}
 
 
 //Port
