@@ -5,6 +5,14 @@ const customers = [
     {
         id: 1,
         name: 'Jessa'
+    },
+    {
+        id: 2,
+        name: 'Mae'
+    },
+    {
+        id: 3,
+        name: 'Jai'
     }
 ]
 
