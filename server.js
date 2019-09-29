@@ -1,14 +1,32 @@
 const express = require('express');
 const app = express();
 
+const customers = [
+    {
+        id: 1,
+        name: 'Jessa'
+    }
+]
 
 app.get('/', ( req, res ) => {
-    res.send('Hello First Route!')
+    res.send('hello api')
 })
 
+app.get('/customers', (req, res) => {
+    res.send(customers)
+})
 
-app.listen( 3000, () => {
+app.get('/customers/:id/', (req, res) => {
+    res.send(req.params)
+})
+
+//Port
+
+const port = process.env.PORT || 3000;
+
+
+app.listen( port, () => {
     return(
-        console.log('It is listening')
+        console.log(`It is listening to port ${port}`)
     )
 } )
