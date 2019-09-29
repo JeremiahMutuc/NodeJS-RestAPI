@@ -41,7 +41,13 @@ app.get('/customers/:id/', (req, res) => {
 //POST requests
 
 app.post('/customers', (req, res) => {
+    const customer = {
+        id: customers.length + 1,
+        name: req.body.name
+    }
 
+    customers.push(customer);
+    res.send(customer);
 })
 
 
