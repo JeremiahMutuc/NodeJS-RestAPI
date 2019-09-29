@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json())
+
 const customers = [
     {
         id: 1,
@@ -15,6 +17,8 @@ const customers = [
         name: 'Jai'
     }
 ]
+
+//GET requests
 
 app.get('/', ( req, res ) => {
     res.send('hello api')
@@ -31,9 +35,15 @@ app.get('/customers/:id/', (req, res) => {
     }
      else {
         res.send(customer)
-     }
-     
+     }   
 })
+
+//POST requests
+
+app.post('/customers', (req, res) => {
+
+})
+
 
 //Port
 
