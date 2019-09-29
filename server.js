@@ -25,7 +25,14 @@ app.get('/customers', (req, res) => {
 })
 
 app.get('/customers/:id/', (req, res) => {
-    res.send(req.params)
+    const customer = customers.find(c => c.id === parseInt(req.params.id))
+    if(!customer){
+        res.status(404).send('the customer with the given id CANNOT FOUND')
+    }
+     else {
+        res.send(customer)
+     }
+     
 })
 
 //Port
