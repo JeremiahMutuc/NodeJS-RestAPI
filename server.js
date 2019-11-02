@@ -21,18 +21,29 @@ const heroesSchema = new mongoose.Schema ({
 
 //create a model for heroes
 const Heroes = mongoose.model('Heroes', heroesSchema);
-async function createHeroes() {
-    const heroes = new Heroes({
-        name: 'robo champ',
-        hero_type: 'agility',
-        ability: 'robo champ can use his two handed chainsaw'
-    })
 
-    const result = await heroes.save();
-    console.log(result);
+//create a document
+// async function createHeroes() {
+//     const heroes = new Heroes({
+//         name: 'Liza',
+//         hero_type: 'intelligence',
+//         ability: 'Liza can use her power to attract all of her opponents attention'
+//     })
+
+//     const result = await heroes.save();
+//     console.log(result);
+// }
+
+//get all documents in mongodb
+async function getHeroes() {
+    const heroes = await Heroes.find();
+ 
+    console.log(heroes);
 }
 
-createHeroes();
+// createHeroes();
+getHeroes();
+
 
 
 const customers = [
