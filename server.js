@@ -11,13 +11,21 @@ mongoose.connect('mongodb://localhost:27017/play_ground')
     .catch( err => console.error('Could not connect to mongodb.....', err))
 
 
-//create a schema
+//create a schema for heroes
 const heroesSchema = new mongoose.Schema ({
     name: String,
     hero_type: String,
     ability: String,
     date_published: { type: Date, default: Date.now }
-})    
+})
+
+//create a model for heroes
+const Heroes = mongoose.model('Heroes', heroesSchema);
+const heroes = new Heroes({
+    name: 'robo champ',
+    hero_type: 'agility',
+    ability: 'robo champ can use his two handed chainsaw'
+})
 const customers = [
     {
         id: 1,
