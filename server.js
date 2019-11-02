@@ -1,8 +1,13 @@
 const Joi = require('joi');
+const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 
 app.use(express.json())
+
+mongoose.connect('mongodb://localhost:27017/play_ground')
+    .then(() => console.log('connected to mongodb....'))
+    .catch( err => console.error('Could not connect to mongodb.....', err))
 
 const customers = [
     {
