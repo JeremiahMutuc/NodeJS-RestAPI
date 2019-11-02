@@ -21,11 +21,20 @@ const heroesSchema = new mongoose.Schema ({
 
 //create a model for heroes
 const Heroes = mongoose.model('Heroes', heroesSchema);
-const heroes = new Heroes({
-    name: 'robo champ',
-    hero_type: 'agility',
-    ability: 'robo champ can use his two handed chainsaw'
-})
+async function createHeroes() {
+    const heroes = new Heroes({
+        name: 'robo champ',
+        hero_type: 'agility',
+        ability: 'robo champ can use his two handed chainsaw'
+    })
+
+    const result = await heroes.save();
+    console.log(result);
+}
+
+createHeroes();
+
+
 const customers = [
     {
         id: 1,
